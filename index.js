@@ -9,20 +9,20 @@ const client = new Discord.Client({
     // add intents
     intents: [
         "GUILDS",
-        "GUILD_MESSAGES"
+        "GUILD_MESSAGES",
+        "GUILD_MEMBERS"
     ]
 })
 
-// event listeners
-client.on("ready", () => {
-    console.log(`Logged in as ${client.user.tag}`)
+let botDetails = {
+    client,
+    prefix: "g.",
+    owners: ["751500917228044398", "375718620086665217"]
+}
 
-})
+client.commands = new Discord.Collection()
+client.events = new Discord.Collection()
 
-client.on("messageCreate", (message) => {
-    if (message.content == "hi"){
-        message.reply("Hello!")
-    }
-})
+module.exports = botDetails
 
 client.login(process.env.TOKEN)
