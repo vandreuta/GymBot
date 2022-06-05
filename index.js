@@ -14,7 +14,7 @@ const client = new Discord.Client({
     ]
 })
 
-let botDetails = {
+let bot= {
     client,
     prefix: "g.",
     owners: ["751500917228044398", "375718620086665217"]
@@ -23,6 +23,11 @@ let botDetails = {
 client.commands = new Discord.Collection()
 client.events = new Discord.Collection()
 
-module.exports = botDetails
+client.loadEvents = (bot, reload) => require("./handlers/events")(bot, reload)
+
+client.loadEvents(bot, false)
+
+
+module.exports = bot
 
 client.login(process.env.TOKEN)
