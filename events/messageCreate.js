@@ -9,7 +9,7 @@ module.exports = {
 		if(message.author.bot) return
 		if(!message.content.startsWith(prefix)) return
 
-		const args = message.content.slice(prefix.length).trim().split(/ +/g)
+		const args = message.content.slice(prefix.length).trim().split(/ +/g) // split by spaces
 		const commandString = args.shift().toLowerCase()
 
 		let command = client.commands.get(commandString)
@@ -29,7 +29,7 @@ module.exports = {
 			await command.run({...bot ,message, args})
 		} catch (err) {
 			let errorMessage = err.toString()
-
+			// for future errors
 			if (errorMessage.startsWith("?")){
 				errorMessage = errorMessage.slice(1)
 				await message.reply(errorMessage)

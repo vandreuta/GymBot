@@ -2,11 +2,11 @@
 // import discord.js library
 const Discord = require("discord.js")
 
-// load env globals
+// env globals
 require("dotenv").config()
 
 const client = new Discord.Client({
-	// add intents
+	// intents -> see discord.js docs: https://discord.js.org/#/docs/discord.js/13.8.0/class/Intents
 	intents: [
 		"GUILDS",
 		"GUILD_MESSAGES",
@@ -15,11 +15,12 @@ const client = new Discord.Client({
 })
 
 let bot= {
-	client,
+	client, 
 	prefix: "g.",
 	owners: ["751500917228044398", "375718620086665217"]
 }
 
+// maps containing command and event details
 client.commands = new Discord.Collection()
 client.events = new Discord.Collection()
 
