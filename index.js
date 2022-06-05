@@ -6,18 +6,18 @@ const Discord = require("discord.js")
 require("dotenv").config()
 
 const client = new Discord.Client({
-    // add intents
-    intents: [
-        "GUILDS",
-        "GUILD_MESSAGES",
-        "GUILD_MEMBERS"
-    ]
+	// add intents
+	intents: [
+		"GUILDS",
+		"GUILD_MESSAGES",
+		"GUILD_MEMBERS"
+	]
 })
 
 let bot= {
-    client,
-    prefix: "g.",
-    owners: ["751500917228044398", "375718620086665217"]
+	client,
+	prefix: "g.",
+	owners: ["751500917228044398", "375718620086665217"]
 }
 
 client.commands = new Discord.Collection()
