@@ -3,7 +3,7 @@ const Discord = require("discord.js")
 module.exports = {
 	name: "messageCreate",
 	run: async function runAll(bot, message) {
-		const { client, prefix, owners} = bot
+		const { discordClient, prefix, owners} = bot
 
 		if(!message.guild) return
 		if(message.author.bot) return
@@ -12,7 +12,7 @@ module.exports = {
 		const args = message.content.slice(prefix.length).trim().split(/ +/g) // split by spaces
 		const commandString = args.shift().toLowerCase()
 
-		let command = client.commands.get(commandString)
+		let command = discordClient.commands.get(commandString)
 		if (!command) return
 
 		let member = message.member

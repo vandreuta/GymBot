@@ -3,7 +3,7 @@
  * 
  * @async
  * @function ping
- * @param {Object} client - discord client
+ * @param {Object} discordClient - discord discordClient
  * @param {Object} message - the discord message
  * @param {string} [args] - additional arguments 
  */
@@ -13,7 +13,7 @@ module.exports = {
 	category: "info",
 	permissions: [],
 	devOnly: false,
-	run: async ({client, message, args}) => {
+	run: async ({discordClient, message, args}) => {
 		message.reply("Pog")
 	}
 }

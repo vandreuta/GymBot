@@ -1,7 +1,7 @@
 const { getFiles } = require("../util/functions")
 
 module.exports = (bot, reload) => {
-    const { client } = bot
+    const { discordClient } = bot
 
     let events = getFiles("./events/", ".js")
 
@@ -14,7 +14,7 @@ module.exports = (bot, reload) => {
             delete require.cache[require.resolve(`../events/${f}`)] //clears references to cached module objects
         
         const event = require(`../events/${f}`)
-        client.events.set(event.name, event)
+        discordClient.events.set(event.name, event)
 
         if(!reload)
             console.log(`${i + 1}. ${f} loaded`)
@@ -25,11 +25,11 @@ module.exports = (bot, reload) => {
 }
 
 function triggerEventHandler(bot, event, ...args){
-    const { client } = bot
+    const { discordClient } = bot
 
     try {
-        if (client.events.has(event))
-            client.events.get(event).run(bot, ...args)
+        if (discordClient.events.has(event))
+            discordClient.events.get(event).run(bot, ...args)
         else 
             throw new Error(`Event ${event} does not exist`)
     } catch (err) {
@@ -38,13 +38,13 @@ function triggerEventHandler(bot, event, ...args){
 }
 
 function initEvents(bot){
-    const { client } = bot
+    const { discordClient } = bot
 
-    client.on("ready", () => {
+    discordClient.on("ready", () => {
         triggerEventHandler(bot,"ready")
     })
 
-    client.on("messageCreate", (message) => {
+    discordClient.on("messageCreate", (message) => {
         triggerEventHandler(bot, "messageCreate", message)
     })
 }
